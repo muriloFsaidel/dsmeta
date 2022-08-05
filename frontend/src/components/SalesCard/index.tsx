@@ -1,10 +1,13 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NotificationButton from "../NotificationButton";
 import './styles.css';
 
 function SalesCard() {
+
+    //Hook functions(usetState, useEffect) are binded with component life cycle and is always run when the component is called or if some state changes
 
      //current Date - 365 days
     const min = new Date(new Date().setDate(new Date().getDate() - 365));
@@ -13,6 +16,14 @@ function SalesCard() {
 
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
+
+    useEffect(() => {
+        //axios, make the request for backend in route sales and then with the response in hands execute this instruction set
+        axios.get("http://localhost:8080/sales")
+        .then(response => {
+            console.log(response.data);
+        })
+    },[]);
 
     return (
         <div className="dsmeta-card">
