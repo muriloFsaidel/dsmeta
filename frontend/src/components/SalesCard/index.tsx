@@ -23,13 +23,18 @@ function SalesCard() {
     const [sales, setSales] = useState<Sale[]>([]);
 
     useEffect(() => {
+
+        //getting the date converted to dateTime from the first caracter to the tenth
+        const dmin = minDate.toISOString().slice(0,10);
+        const dmax = maxDate.toISOString().slice(0,10);
+
         //axios, make the request for backend in route sales and then with the response in hands execute this instruction set
-        axios.get(`${BASE_URL}/sales`)
+        axios.get(`${BASE_URL}/sales?minDate=${dmin}&&maxDate=${dmax}`)
         .then(response => {
             //updating list with sales objects
             setSales(response.data.content);
         })
-    },[]);
+    },[minDate,maxDate]);
 
     return (
         <div className="dsmeta-card">
