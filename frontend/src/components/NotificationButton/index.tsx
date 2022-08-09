@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import icon from '../../assets/img/notification-icon.svg'
 import { BASE_URL } from '../../utils/request'
 import './styles.css'
@@ -11,7 +12,7 @@ function handleClick( id : number){
     //axios make a request to backend on sales route / id / notification to send the message with sale data
     axios(`${BASE_URL}/sales/${id}/notification`)
         .then(response => {
-            console.log("SUCESSO");
+            toast.info("SMS enviado com sucesso");
         });
 }
 //receiving the sale id as a prop
