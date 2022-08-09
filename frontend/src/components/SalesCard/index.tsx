@@ -31,9 +31,10 @@ function SalesCard() {
         //axios, make the request for backend in route sales and then with the response in hands execute this instruction set
         axios.get(`${BASE_URL}/sales?minDate=${dmin}&&maxDate=${dmax}`)
         .then(response => {
-            //updating list with sales objects
+            //updating list with sale objects
             setSales(response.data.content);
         })
+        //in case, the states change recall the useEffect()
     },[minDate,maxDate]);
 
     return (
@@ -87,7 +88,7 @@ function SalesCard() {
                                         <td>R$ {sale.amount.toFixed(2)}</td>
                                         <td>
                                             <div className="dsmeta-red-btn-container">
-                                                <NotificationButton />
+                                                <NotificationButton saleId={sale.id} />
                                             </div>
                                         </td>
                                     </tr>
