@@ -10,7 +10,7 @@ type Props = {
 
 function handleClick( id : number){
     //axios make a request to backend on sales route / id / notification to send the message with sale data
-    axios(`${BASE_URL}/sales/${id}/notification`)
+    axios.get(`${BASE_URL}/sales/${id}/notification`)
         .then(response => {
             toast.info("SMS enviado com sucesso");
         });
